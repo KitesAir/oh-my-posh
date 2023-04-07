@@ -2,30 +2,24 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
-      "alignment": "left",
+      "alignment": "right",
       "segments": [
         {
-          "type": "text",
-          "style": "diamond",
+          "background": "#003543",
           "foreground": "#ffffff",
-          "background": "#cc3802",
-          "template": "{{ if .Env.PNPPSHOST }} \uf8c5 {{ .Env.PNPPSHOST }} {{ end }}"
+          "style": "plain",
+          "template": " \uf64f {{ .CurrentDate | date .Format }} ",
+          "type": "time"
         },
         {
-          "type": "text",
-          "style": "powerline",
+          "background": "#83769c",
           "foreground": "#ffffff",
-          "background": "#047e84",
-          "powerline_symbol": "\ue0b0",
-          "template": "{{ if .Env.PNPPSSITE }} \uf672 {{ .Env.PNPPSSITE }}{{ end }}"
-        },
-        {
-          "type": "text",
-          "style": "diamond",
-          "trailing_diamond": "\ue0b4",
-          "foreground": "#ffffff",
-          "background": "#047e84",
-          "template": "{{ if .Env.PNPPSSITE }}\u00A0{{ end }}"
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": " \ufa1e{{ .FormattedMs }} ",
+          "type": "executiontime"
         }
       ],
       "type": "rprompt"
@@ -36,16 +30,23 @@
         {
           "background": "#9A348E",
           "foreground": "#ffffff",
+          "properties": {
+            "display_host": false
+          },
           "style": "diamond",
-          "template": "{{ .UserName }} ",
+          "template": "{{if .Root}} \uf0e7 {{.UserName}} {{else}} {{.UserName}} {{end}}",
+          "trailing_diamond": "\ue0b0",
           "type": "session"
         },
         {
-          "background": "#DA627D",
+          "background": "#C678DD",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "properties": {
-            "style": "folder"
+            "folder_icon": "\uf115",
+            "folder_separator_icon": " \ue0b1 ",
+            "max_depth": 2,
+            "style": "agnoster_short"
           },
           "style": "powerline",
           "template": " {{ .Path }} ",
@@ -53,41 +54,17 @@
         },
         {
           "background": "#FCA17D",
-          "foreground": "#ffffff",
+          "foreground": "#193549",
           "powerline_symbol": "\ue0b0",
-          "properties": {
-            "branch_icon": "",
-            "fetch_stash_count": true,
-            "fetch_status": false,
-            "fetch_upstream_icon": true
-          },
           "style": "powerline",
-          "template": " \u279c ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}) ",
+          "template": " {{ .HEAD }} ",
           "type": "git"
-        },
-        {
-          "background": "#86BBD8",
-          "foreground": "#ffffff",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
-          "type": "node"
-        },
-        {
-          "background": "#33658A",
-          "foreground": "#ffffff",
-          "properties": {
-            "time_format": "15:04"
-          },
-          "style": "diamond",
-          "template": " \u2665 {{ .CurrentDate | date .Format }} ",
-          "trailing_diamond": "\ue0b0",
-          "type": "time"
         }
       ],
       "type": "prompt"
     }
   ],
+  "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.UserName}} \u2794 📁{{.Folder}}",
   "final_space": true,
   "version": 2
 }
