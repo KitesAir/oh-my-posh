@@ -7,7 +7,6 @@
         {
           "type": "text",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
           "foreground": "#ffffff",
           "background": "#cc3802",
           "template": "{{ if .Env.PNPPSHOST }} \uf8c5 {{ .Env.PNPPSHOST }} {{ end }}"
